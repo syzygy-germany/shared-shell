@@ -21,21 +21,21 @@ else
   __import logger
   __import exiting
 
-  function check_and_error {
+  function __check_and_error {
     local result=${1:-1}
     local message=${2:-"wrong call; defaulting to error"}
     if [ ${result} -ne 0 ]; then
       shared_exec_err_ocurred=${result}
-      error "Step failed (${message}). See log"
+      __error "Step failed (${message}). See log"
     fi
   }
 
-  function exec_and_continue_on_ok() {
-    local __exec_and_continue_on_ok_call=${1:-"/bin/false"}
-    log "Executing [${__exec_and_continue_on_ok_call}] in [$(pwd)]"
-    eval ${__exec_and_continue_on_ok_call}
+  function __exec_and_continue_on_ok() {
+    local call=${1:-"/bin/false"}
+    __log "Executing [${call}] in [$(pwd)]"
+    eval ${call}
     local result=$?
-    check_and_exit $result ${__exec_and_continue_on_ok_call}
+    __check_and_exit $result ${call}
   }
 
 fi

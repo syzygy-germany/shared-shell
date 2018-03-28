@@ -13,17 +13,17 @@ __import logger
 __import execute
 __import exiting
 
-header "loader"
-write "Logger is loaded: $(__module_loaded logger)"
+__header "loader"
+__write "Logger is loaded: $(__module_loaded logger)"
 
-header "header"
-log "log"
-warn "warn"
-error "error"
-writealways "writealways"
+__header "header"
+__log "log"
+__warn "warn"
+__error "error"
+__writealways "writealways"
 
-header "execute"
-exec_and_continue_on_ok "echo 'a'"
+__header "execute"
+__exec_and_continue_on_ok "echo 'a'"
 
-header "exiting"
-quit 0
+__header "exiting"
+__quit 0
