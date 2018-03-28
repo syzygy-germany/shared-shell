@@ -15,26 +15,26 @@ else
 
   __import logger
 
-  function quit() {
+  function __quit() {
     local result=${1:-0}
-    write
-    log "Exiting with result ${result}"
+    __write
+    __log "Exiting with result ${result}"
     exit ${result}
   }
 
-  function signalled_exit {
+  function __signalled_exit {
     if [ ${shared_exec_err_ocurred} -ne 1 ]; then
-      quit ${shared_exec_err_ocurred}
+      __quit ${shared_exec_err_ocurred}
     fi
     exit 0
   }
 
-    function check_and_exit {
+  function __check_and_exit {
     local result=${1:-1}
     local message=${2:-"wrong call; defaulting to exit"}
     if [ ${result} -gt 0 ]; then
-      error "Step failed (${message}). See log"
-      quit ${result}
+      __error "Step failed (${message}). See log"
+      __quit ${result}
     fi
   }
 fi
