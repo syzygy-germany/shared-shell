@@ -5,7 +5,11 @@ package: ## create debian package
 # .PHONY: config
 config: ## copy config
 	mkdir -p /etc/sascha-andres/shared-shell
-	cp sys-config/config /etc/sascha-andres/shared-shell
+	cp sys-config/config.sh /etc/sascha-andres/shared-shell/config
+
+test: ## run test.sh, copy config before
+	sudo make config
+	./test.sh
 
 # Absolutely awesome: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help:

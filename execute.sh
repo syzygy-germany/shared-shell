@@ -18,23 +18,23 @@ else
 
   shared_exec_err_ocurred=${shared_exec_err_ocurred:-0}
 
-  source "${shared_install_location}/logger.sh"
-  source "${shared_install_location}/exiting.sh"
+  __import logger
+  __import exiting
 
   function check_and_error {
-    __check_and_error_result=${1:-1}
-    __check_and_error_message=${2:-"wrong call; defaulting to error"}
-    if [ ${__check_and_error_result} -ne 0 ]; then
-      shared_exec_err_ocurred=${__check_and_error_result}
-      error "Step failed (${__check_and_error_message}). See log"
+    local result=${1:-1}
+    local message=${2:-"wrong call; defaulting to error"}
+    if [ ${result} -ne 0 ]; then
+      shared_exec_err_ocurred=${result}
+      error "Step failed (${message}). See log"
     fi
   }
 
   function exec_and_continue_on_ok() {
-    __exec_and_continue_on_ok_call=${1:-"/bin/false"}
+    local __exec_and_continue_on_ok_call=${1:-"/bin/false"}
     log "Executing [${__exec_and_continue_on_ok_call}] in [$(pwd)]"
     eval ${__exec_and_continue_on_ok_call}
-    result=$?
+    local result=$?
     check_and_exit $result ${__exec_and_continue_on_ok_call}
   }
 

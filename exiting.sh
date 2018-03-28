@@ -13,17 +13,16 @@ else
   
   shared_exec_err_ocurred=${shared_exec_err_ocurred:-0}
 
-  source "${shared_install_location}/logger.sh"
+  __import logger
 
   function quit() {
-    __quit_result=${1:-0}
+    local result=${1:-0}
     write
-    log "Exiting with result ${__quit_result}"
-    exit ${__quit_result}
+    log "Exiting with result ${result}"
+    exit ${result}
   }
 
   function signalled_exit {
-
     if [ ${shared_exec_err_ocurred} -ne 1 ]; then
       quit ${shared_exec_err_ocurred}
     fi
@@ -31,11 +30,11 @@ else
   }
 
     function check_and_exit {
-    __check_and_exit_result=${1:-1}
-    __check_and_exit_message=${2:-"wrong call; defaulting to exit"}
-    if [ ${__check_and_exit_result} -gt 0 ]; then
-      error "Step failed (${__check_and_exit_message}). See log"
-      quit ${__check_and_exit_result}
+    local result=${1:-1}
+    local message=${2:-"wrong call; defaulting to exit"}
+    if [ ${result} -gt 0 ]; then
+      error "Step failed (${message}). See log"
+      quit ${result}
     fi
   }
 fi
