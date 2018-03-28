@@ -1,0 +1,33 @@
+name: "shared-shell"
+arch: "amd64"
+platform: "linux"
+version: "0.1.0"
+section: "default"
+priority: "extra"
+#provides:
+#- shared-shell
+#depends:
+#- foo
+#- bar
+# recommends on rpm packages requires rpmbuild >= 4.13
+recommends:
+- bash
+# suggests on rpm packages requires rpmbuild >= 4.13
+#suggests:
+#- something-else
+#conflicts:
+#- not-foo
+#- not-bar
+maintainer: "Sascha Andres <sascha.andres@outlook.com>"
+description: |
+  Some scripts I use to use in scripts
+vendor: "Sascha Andres"
+homepage: "https://github.com/sascha-andres/shared-shell"
+license: "Apache 2"
+bindir: "/opt/sascha-andres/shared-shell"
+files:
+  ./logger.sh: "/opt/sascha-andres/shared-shell/logger.sh"
+  ./execute.sh: "/opt/sascha-andres/shared-shell/execute.sh"
+  ./exiting.sh: "/opt/sascha-andres/shared-shell/exiting.sh"
+config_files:
+  ./sys-config/config.sh: "/etc/sascha-andres/shared-shell/config"
