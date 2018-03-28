@@ -29,6 +29,16 @@ Additionally, this sets `set -euo pipefail`
 
 You do not source modules directly but import them using `__import`. The loader prevents modules from being loaded multiple times.
 
+Sample:
+
+    __import logger # will load logger functions
+
+To check if a module is loaded you can do
+
+    if [ $(__module_loaded ${module}) == "n" ]; then
+      not loaded
+    fi
+
 ## Modules
 
 ### logger
@@ -139,4 +149,5 @@ Prints a log line with exit code and ends script execution
 
 |Version|Description|
 |---|---|
+|TBD|Added loader with __import and __module_loaded|
 |0.1.0|Initial version|
