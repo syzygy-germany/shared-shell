@@ -35,19 +35,19 @@ You do not source modules directly but import them using `__import`. The loader 
 
 Sample:
 
-    __import logger # will load logger functions
+    pkg::import logger # will load logger functions
 
 To check if a module is loaded you can do
 
-    if [ $(__module_loaded ${module}) == "n" ]; then
-      not loaded
+    if [ $(pkg::module_loaded ${module}) == "n" ]; then
+      echo not loaded
     fi
 
 ## Modules
 
 ### logger
 
-Provides some helper methods to write output to console/logger
+Provides some helper methods to write output to console/logger. Prepend each function with `logger::`
 
 #### Methods
 
@@ -57,7 +57,7 @@ Print out a header to denote a section
 
 Sample call:
 
-    header "header"
+    logger::header "header"
     
 Will print
 
@@ -71,7 +71,7 @@ Print out text
 
 Sample call:
 
-    write "hello world"
+    logger::write "hello world"
 
 Will print
 
@@ -87,7 +87,7 @@ Write a warning to stdout. Use this to indicate a problem that allows to continu
 
 Sample call:
 
-    warn "warn"
+    logger::warn "warn"
     
 Will print
 
@@ -99,7 +99,7 @@ Write an error to stderr. Use this this indicate a problem that result in stoppi
 
 Sample call:
 
-    error "error"
+    logger::error "error"
     
 Will print
 
@@ -111,7 +111,7 @@ Write a log message to stdout
 
 Sample call:
 
-    log "log"
+    logger::log "log"
 
 Will print
 
@@ -121,7 +121,7 @@ Will print
 
 #### Defined variables
 
-Variable `shared_exec_err_ocurred` is used to have exit code for `check_and_error` and `signalled_exit` in sync.
+Variable `shared_exec_err_ocurred` is used to have exit code for `check_and_error` and `signalled_exit` in sync. . Prepend each function with `executing::`
 
 #### check_and_error
 
@@ -134,6 +134,8 @@ Paramter 1 defaults to -1, error message to 'wrong call; defaulting to error'
 Executes the given parameter (one!) and evaluates the return code with `check_and_exit`
 
 ### exiting
+
+Prepend each function with `exiting::`
 
 #### signalled_exit
 
@@ -153,7 +155,8 @@ Prints a log line with exit code and ends script execution
 
 |Version|Description|
 |---|---|
+|0.3.0|Adopt packages|
 |0.2.0|Added loader with __import and __module_loaded|
 ||add fine grained bash option handling|
-||add fine grained bash option handling|
+||prepend __ to function names|
 |0.1.0|Initial version|
