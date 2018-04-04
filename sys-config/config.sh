@@ -2,21 +2,30 @@
 
 shared_config_loaded=${shared_config_loaded:-0}
 if [ "x0" == "x${shared_config_loaded}" ]; then
-  set -euo pipefail
+  set -u
 
   shared_config_loaded=1
 
   shared_install_location=${shared_install_location:-"/opt/sascha-andres/shared-shell"}
   shared_debug=${shared_debug:-0}
+  shared_pipefail=${shared_pipefail:-1}
+  shared_exit_immediatly=${shared_exit_immediatly:-1}
 
   if [ "x1" == "x${shared_debug}" ]; then
     set -x
+  fi
+  if [ "x1" == "x${shared_exit_immediatly}" ]; then
+    set -e
+  fi
+  if [ "x1" == "x${shared_pipefail}" ]; then
+    set -o pipefail
   fi
 
   declare -a shared_loaded_modules
 
   function __module_loaded() {
     local value=${1:-}
+    shared_loaded_modules=${shared_loaded_modules:-} 
     for module in "${shared_loaded_modules[@]}"; do
       if [ "x${module}" == "x${value}" ]; then
         echo "y"
@@ -29,6 +38,7 @@ if [ "x0" == "x${shared_config_loaded}" ]; then
 
   function __import() {
     module=${1:-}
+    shared_loaded_modules=${shared_loaded_modules:-} 
     if [ $(__module_loaded ${module}) == "n" ]; then
       if [ "x" != "x${module}" ]; then
         if [ -e "${shared_install_location}/${module}.sh" ]; then
