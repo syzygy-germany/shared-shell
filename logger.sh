@@ -4,13 +4,13 @@
 shared_debug=${shared_debug:-0}
 
 shared_logger_sh_loaded=${shared_logger_sh_loaded:-0}
-if [ "x0" != "x${shared_logger_sh_loaded}" ]; then
+if [ "x1" == "x${shared_logger_sh_loaded}" ]; then
   if [ "x1" == "x${shared_debug}" ]; then
     log "logger.sh already included"
   fi
 else
   shared_logger_sh_loaded=1
-  
+
   if [ ! -e /etc/sascha-andres/shared-shell/config ]; then
     echo "!! config not found !!"
     exit 1
@@ -20,49 +20,49 @@ else
   shared_logger_tag=${shared_logger_tag:-}
   shared_verbose=${shared_verbose:-1}
 
-  function header() {
-    __header_content=${1:-}
-    write
-    write "*** ${__header_content} ***"
-    write
+  function __header() {
+    local content=${1:-}
+    __write
+    __write "*** ${content} ***"
+    __write
   }
 
-  function write() {
-    __write_content=${1:-}
+  function __write() {
+    local content=${1:-}
     if [ "x" == "x${shared_logger_tag}" ]; then
       if [ "x1" == "x${shared_verbose}" ]; then
-        echo "${__write_content}"
+        echo "${content}"
       fi
     else
       if [ "x1" == "x${shared_verbose}" ]; then
-        echo "${__write_content}"
+        echo "${content}"
       fi
-      echo "${__write_content}" | logger -t "${shared_logger_tag}"
+      echo "${content}" | logger -t "${shared_logger_tag}"
     fi
   }
 
-  function writealways() {
-    __writealways_content=${1:-}
+  function __writealways() {
+    local content=${1:-}
     if [ "x" == "x${shared_logger_tag}" ]; then
-      echo "${__writealways_content}"
+      echo "${content}"
     else
-      echo "${__writealways_content}"
-      echo "${__writealways_content}" | logger -t "${shared_logger_tag}"
+      echo "${content}"
+      echo "${content}" | logger -t "${shared_logger_tag}"
     fi
   }
 
-  function warn() {
-    __warn_content=${1:-}
-    writealways "?? ${__warn_content} ??"
+  function __warn() {
+    local content=${1:-}
+    __writealways "?? ${content} ??"
   }
 
-  function error() {
-    __error_content=${1:-}
-    (>&2 echo "!! ${__error_content} !!")
+  function __error() {
+    local content=${1:-}
+    (>&2 __writealways "!! ${content} !!")
   }
 
-  function log() {
-    __log_content=${1:-}
-    write "--> ${__log_content}"
+  function __log() {
+    local content=${1:-}
+    __write "--> ${content}"
   }
 fi

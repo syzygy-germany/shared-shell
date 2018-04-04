@@ -18,6 +18,10 @@ This sets the install location and some configuration properties. Currently exis
 
 |Variable|Since|Description|
 |---|---|---|
+|shared_pipefail|0.2.0|Enable pipefail only when 1|
+|||Defaulting to 1|
+|shared_exit_immediatly|0.2.0|Exit immediatly when sub command fails|
+|||Defaulting to 1|
 |shared_install_location|0.1.0|The location where the scripts are located|
 |||always use this variable to source other scripts|
 |||Defaulting to `/opt/sascha-andres/shared-shell`|
@@ -25,13 +29,29 @@ This sets the install location and some configuration properties. Currently exis
 
 Additionally, this sets `set -euo pipefail`
 
-## ${shared_install_location}/logger.sh
+## Importing modules
+
+You do not source modules directly but import them using `__import`. The loader prevents modules from being loaded multiple times.
+
+Sample:
+
+    __import logger # will load logger functions
+
+To check if a module is loaded you can do
+
+    if [ $(__module_loaded ${module}) == "n" ]; then
+      not loaded
+    fi
+
+## Modules
+
+### logger
 
 Provides some helper methods to write output to console/logger
 
-### Methods
+#### Methods
 
-#### header
+##### header
 
 Print out a header to denote a section
 
@@ -45,7 +65,7 @@ Will print
     *** header ***
     <empty line>
 
-#### write
+##### write
 
 Print out text
 
@@ -57,11 +77,11 @@ Will print
 
 	hello world
 
-#### writealways
+##### writealways
 
 Same as write but prints out even if `shared_verbose=0`
 
-#### warn
+##### warn
 
 Write a warning to stdout. Use this to indicate a problem that allows to continue.
 
@@ -73,7 +93,7 @@ Will print
 
 	?? warn ??
 
-#### error
+##### error
 
 Write an error to stderr. Use this this indicate a problem that result in stopping the execution.
 
@@ -85,7 +105,7 @@ Will print
 
 	!! error !!
 
-#### log
+##### log
 
 Write a log message to stdout
 
@@ -97,35 +117,35 @@ Will print
 
     --> log
 
-## ${shared_install_location}/execute.sh
+### execute
 
-### Defined variables
+#### Defined variables
 
 Variable `shared_exec_err_ocurred` is used to have exit code for `check_and_error` and `signalled_exit` in sync.
 
-### check_and_error
+#### check_and_error
 
 Print out an error based on parameter 1, message passed as parameter 2.
 
 Paramter 1 defaults to -1, error message to 'wrong call; defaulting to error'
 
-### exec_and_continue_on_ok
+#### exec_and_continue_on_ok
 
 Executes the given parameter (one!) and evaluates the return code with `check_and_exit`
 
-## ${shared_install_location}/exiting.sh
+### exiting
 
-### signalled_exit
+#### signalled_exit
 
 Exits if `check_and_error` was called with a non zero result code
 
-### check_and_exit
+#### check_and_exit
 
 Exit the script based on parameter 1, message passed as parameter 2 printed out as error. Calls quit from exiting.sh
 
 Paramter 1 defaults to -1, error message to 'wrong call; defaulting to error'
 
-### quit
+#### quit
 
 Prints a log line with exit code and ends script execution
 
@@ -133,4 +153,7 @@ Prints a log line with exit code and ends script execution
 
 |Version|Description|
 |---|---|
+|0.2.0|Added loader with __import and __module_loaded|
+||add fine grained bash option handling|
+||add fine grained bash option handling|
 |0.1.0|Initial version|

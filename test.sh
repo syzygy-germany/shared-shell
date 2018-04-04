@@ -8,18 +8,22 @@ if [ ! -e /etc/sascha-andres/shared-shell/config ]; then
   exit 1
 fi
 source /etc/sascha-andres/shared-shell/config
-source "${shared_install_location}/logger.sh"
-source "${shared_install_location}/execute.sh"
-source "${shared_install_location}/exiting.sh"
 
-header "header"
-log "log"
-warn "warn"
-error "error"
-writealways "writealways"
+__import logger
+__import execute
+__import exiting
 
-header "execute"
-exec_and_continue_on_ok "echo 'a'"
+__header "loader"
+__write "Logger is loaded: $(__module_loaded logger)"
 
-header "exiting"
-quit 0
+__header "header"
+__log "log"
+__warn "warn"
+__error "error"
+__writealways "writealways"
+
+__header "execute"
+__exec_and_continue_on_ok "echo 'a'"
+
+__header "exiting"
+__quit 0
