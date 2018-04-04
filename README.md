@@ -1,5 +1,15 @@
 # shell scripts to include
 
+## History
+
+|Version|Description|
+|---|---|
+|0.3.0|Adopt packages|
+|0.2.0|Added loader with __import and __module_loaded|
+||add fine grained bash option handling|
+||prepend __ to function names|
+|0.1.0|Initial version|
+
 ## Configuration variables
 
 |Variable|Since|Description|
@@ -150,13 +160,3 @@ Paramter 1 defaults to -1, error message to 'wrong call; defaulting to error'
 #### quit
 
 Prints a log line with exit code and ends script execution
-
-# History
-
-|Version|Description|
-|---|---|
-|0.3.0|Adopt packages|
-|0.2.0|Added loader with __import and __module_loaded|
-||add fine grained bash option handling|
-||prepend __ to function names|
-|0.1.0|Initial version|
