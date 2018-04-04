@@ -17,8 +17,7 @@ if [ "x0" == "x${shared_config_loaded}" ]; then
 
   function __module_loaded() {
     local value=${1:-}
-    shared_loaded_modules=${shared_loaded_modules:-}
-    for module in ${shared_loaded_modules[@]}; do
+    for module in "${shared_loaded_modules[@]}"; do
       if [ "x${module}" == "x${value}" ]; then
         echo "y"
         return 0
@@ -30,7 +29,6 @@ if [ "x0" == "x${shared_config_loaded}" ]; then
 
   function __import() {
     module=${1:-}
-    shared_loaded_modules=${shared_loaded_modules:-()}
     if [ $(__module_loaded ${module}) == "n" ]; then
       if [ "x" != "x${module}" ]; then
         if [ -e "${shared_install_location}/${module}.sh" ]; then
