@@ -18,24 +18,24 @@ else
 
   shared_exec_err_ocurred=${shared_exec_err_ocurred:-0}
 
-  __import logger
-  __import exiting
+  pkg::import logger
+  pkg::import exiting
 
-  function __check_and_error {
+  function execute::check_and_error {
     local result=${1:-1}
     local message=${2:-"wrong call; defaulting to error"}
     if [ ${result} -ne 0 ]; then
       shared_exec_err_ocurred=${result}
-      __error "Step failed (${message}). See log"
+      logger::error "Step failed (${message}). See log"
     fi
   }
 
-  function __exec_and_continue_on_ok() {
+  function execute::exec_and_continue_on_ok() {
     local call=${1:-"/bin/false"}
     __log "Executing [${call}] in [$(pwd)]"
     eval ${call}
     local result=$?
-    __check_and_exit $result ${call}
+    exiting::check_and_exit $result ${call}
   }
 
 fi
