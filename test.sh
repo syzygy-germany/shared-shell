@@ -3,27 +3,27 @@
 shared_install_location=$(pwd)
 shared_debug=0
 
-if [ ! -e /etc/sascha-andres/shared-shell/config ]; then
+if [ ! -e "$(pwd)/sys-config/config.sh" ]; then
   echo "!! config not found !!"
   exit 1
 fi
-source /etc/sascha-andres/shared-shell/config
+source "$(pwd)/sys-config/config.sh"
 
-__import logger
-__import execute
-__import exiting
+pkg::import logger
+pkg::import execute
+pkg::import exiting
 
-__header "loader"
-__write "Logger is loaded: $(__module_loaded logger)"
+logger::header "loader"
+logger::write "Logger is loaded: $(pkg::module_loaded logger)"
 
-__header "header"
-__log "log"
-__warn "warn"
-__error "error"
-__writealways "writealways"
+logger::header "header"
+logger::log "log"
+logger::warn "warn"
+logger::error "error"
+logger::writealways "writealways"
 
-__header "execute"
-__exec_and_continue_on_ok "echo 'a'"
+logger::header "execute"
+exeuting::exec_and_continue_on_ok "echo 'a'"
 
-__header "exiting"
-__quit 0
+logger::header "exiting"
+exiting::quit 0

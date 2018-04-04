@@ -20,14 +20,14 @@ else
   shared_logger_tag=${shared_logger_tag:-}
   shared_verbose=${shared_verbose:-1}
 
-  function __header() {
+  function logger::header() {
     local content=${1:-}
-    __write
-    __write "*** ${content} ***"
-    __write
+    logger::write
+    logger::write "*** ${content} ***"
+    logger::write
   }
 
-  function __write() {
+  function logger::write() {
     local content=${1:-}
     if [ "x" == "x${shared_logger_tag}" ]; then
       if [ "x1" == "x${shared_verbose}" ]; then
@@ -41,7 +41,7 @@ else
     fi
   }
 
-  function __writealways() {
+  function logger::writealways() {
     local content=${1:-}
     if [ "x" == "x${shared_logger_tag}" ]; then
       echo "${content}"
@@ -51,18 +51,18 @@ else
     fi
   }
 
-  function __warn() {
+  function logger::warn() {
     local content=${1:-}
-    __writealways "?? ${content} ??"
+    logger::writealways "?? ${content} ??"
   }
 
-  function __error() {
+  function logger::error() {
     local content=${1:-}
-    (>&2 __writealways "!! ${content} !!")
+    (>&2 logger::writealways "!! ${content} !!")
   }
 
-  function __log() {
+  function logger::log() {
     local content=${1:-}
-    __write "--> ${content}"
+    logger::write "--> ${content}"
   }
 fi

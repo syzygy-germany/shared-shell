@@ -23,7 +23,7 @@ if [ "x0" == "x${shared_config_loaded}" ]; then
 
   declare -a shared_loaded_modules
 
-  function __module_loaded() {
+  function pkg::module_loaded() {
     local value=${1:-}
     shared_loaded_modules=${shared_loaded_modules:-} 
     for module in "${shared_loaded_modules[@]}"; do
@@ -36,10 +36,10 @@ if [ "x0" == "x${shared_config_loaded}" ]; then
     return 0
   }
 
-  function __import() {
+  function pkg::import() {
     module=${1:-}
     shared_loaded_modules=${shared_loaded_modules:-} 
-    if [ $(__module_loaded ${module}) == "n" ]; then
+    if [ $(pkg::module_loaded ${module}) == "n" ]; then
       if [ "x" != "x${module}" ]; then
         if [ -e "${shared_install_location}/${module}.sh" ]; then
           shared_loaded_modules=("${shared_loaded_modules[@]}" "${module}")
