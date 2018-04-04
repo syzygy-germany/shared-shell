@@ -18,6 +18,10 @@ This sets the install location and some configuration properties. Currently exis
 
 |Variable|Since|Description|
 |---|---|---|
+|shared_pipefail|0.2.0|Enable pipefail only when 1|
+|||Defaulting to 1|
+|shared_exit_immediatly|0.2.0|Exit immediatly when sub command fails|
+|||Defaulting to 1|
 |shared_install_location|0.1.0|The location where the scripts are located|
 |||always use this variable to source other scripts|
 |||Defaulting to `/opt/sascha-andres/shared-shell`|
@@ -149,5 +153,7 @@ Prints a log line with exit code and ends script execution
 
 |Version|Description|
 |---|---|
-|TBD|Added loader with __import and __module_loaded|
+|0.2.0|Added loader with __import and __module_loaded|
+||add fine grained bash option handling|
+||add fine grained bash option handling|
 |0.1.0|Initial version|
