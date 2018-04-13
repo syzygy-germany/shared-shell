@@ -32,7 +32,7 @@ else
 
   function execute::exec_and_continue_on_ok() {
     local call=${1:-"/bin/false"}
-    __log "Executing [${call}] in [$(pwd)]"
+    logger::log "Executing [${call}] in [$(pwd)]"
     eval ${call}
     local result=$?
     exiting::check_and_exit $result ${call}
