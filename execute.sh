@@ -33,9 +33,17 @@ else
   function execute::exec_and_continue_on_ok() {
     local call=${1:-"/bin/false"}
     logger::log "Executing [${call}] in [$(pwd)]"
-    eval ${call}
+    eval "${call}"
     local result=$?
     exiting::check_and_exit $result ${call}
+  }
+
+  function execute::no_exit_immediately {
+    local call=${1:-"/bin/false"}
+    logger::log "Executing [${call}] in [$(pwd)]"
+    set +e
+    eval "${call}"
+    set -e
   }
 
 fi
