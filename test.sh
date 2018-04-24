@@ -23,7 +23,7 @@ logger::error "error"
 logger::writealways "writealways"
 
 logger::header "execute"
-exeuting::exec_and_continue_on_ok "echo 'a'"
+execute::exec_and_continue_on_ok "echo 'a'"
 
 logger::header "exiting"
 exiting::quit 0
