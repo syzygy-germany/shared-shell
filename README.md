@@ -4,6 +4,8 @@
 
 |Version|Description|
 |---|---|
+|0.4.0|no-exit-immediatly|
+||color support|
 |0.3.0|Adopt packages|
 |0.2.0|Added loader with __import and __module_loaded|
 ||add fine grained bash option handling|
@@ -58,6 +60,8 @@ To check if a module is loaded you can do
 ### logger
 
 Provides some helper methods to write output to console/logger. Prepend each function with `logger::`
+
+To turn off colored output set shared_logger_colored=0
 
 #### Methods
 
@@ -132,6 +136,10 @@ Will print
 #### Defined variables
 
 Variable `shared_exec_err_ocurred` is used to have exit code for `check_and_error` and `signalled_exit` in sync. . Prepend each function with `executing::`
+
+#### no-exit-immediatly
+
+Wraps the command in +e/-e
 
 #### check_and_error
 
