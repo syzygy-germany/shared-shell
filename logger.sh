@@ -22,12 +22,12 @@ else
   shared_logger_colored=${shared_logger_colored:-1}
   shared_logger_echo_cmd="/bin/echo -e"
 
-  RED='\033[0m'
-  GREEN='\033[0m'
-  BLUE='\033[0m'
-  CYAN='\033[0m'
-  ORANGE='\033[0m'
-  NC='\033[0m'
+  RED=''
+  GREEN=''
+  BLUE=''
+  CYAN=''
+  ORANGE=''
+  NC=''
 
   if [ "${shared_logger_colored}" -eq 1 ]; then
     RED='\033[0;31m'
@@ -35,6 +35,7 @@ else
     ORANGE='\033[0;33m'
     BLUE='\033[0;34m'
     CYAN='\033[0;36m'
+    NC='\033[0m'
   fi
 
   function logger::header() {
