@@ -6,7 +6,7 @@ if [ "x0" == "x${shared_module_loaded}" ]; then
 
   shared_module_loaded=1
 
-  shared_install_location=${shared_install_location:-"/opt/sascha-andres/shared-shell"}
+  shared_install_location=${shared_install_location:-"/opt/sascha-andres/shell"}
   shared_debug=${shared_debug:-0}
   shared_pipefail=${shared_pipefail:-1}
   shared_exit_immediatly=${shared_exit_immediatly:-1}
