@@ -11,12 +11,6 @@ if [ "x1" == "x${shared_logger_sh_loaded}" ]; then
 else
   shared_logger_sh_loaded=1
 
-  if [ ! -e /etc/sascha-andres/shared-shell/config ]; then
-    printf "!! config not found !!"
-    exit 1
-  fi
-  source /etc/sascha-andres/shared-shell/config
-
   shared_logger_tag=${shared_logger_tag:-}
   shared_verbose=${shared_verbose:-1}
   shared_logger_colored=${shared_logger_colored:-1}

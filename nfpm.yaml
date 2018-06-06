@@ -1,7 +1,7 @@
 name: "shared-shell"
 arch: "amd64"
 platform: "linux"
-version: "0.4.0"
+version: "0.4.1"
 section: "default"
 priority: "extra"
 provides:
@@ -14,10 +14,10 @@ description: |
 vendor: "Sascha Andres"
 homepage: "https://github.com/sascha-andres/shared-shell"
 license: "Apache 2"
-bindir: "/opt/sascha-andres/shared-shell"
+bindir: "/opt/sascha-andres/shell"
 files:
-  ./logger.sh: "/opt/sascha-andres/shared-shell/logger.sh"
-  ./execute.sh: "/opt/sascha-andres/shared-shell/execute.sh"
-  ./exiting.sh: "/opt/sascha-andres/shared-shell/exiting.sh"
+  ./logger.sh: "/opt/sascha-andres/shell/logger.sh"
+  ./execute.sh: "/opt/sascha-andres/shell/execute.sh"
+  ./exiting.sh: "/opt/sascha-andres/shell/exiting.sh"
+  ./exiting.sh: "/opt/sascha-andres/shell/module.sh"
 config_files:
-  ./sys-config/config.sh: "/etc/sascha-andres/shared-shell/config"

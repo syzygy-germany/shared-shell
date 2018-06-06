@@ -3,11 +3,11 @@
 shared_install_location=$(pwd)
 shared_debug=0
 
-if [ ! -e "$(pwd)/sys-config/config.sh" ]; then
+if [ ! -e "$(pwd)/module.sh" ]; then
   echo "!! config not found !!"
   exit 1
 fi
-source "$(pwd)/sys-config/config.sh"
+source "$(pwd)/module.sh"
 
 pkg::import logger
 pkg::import execute

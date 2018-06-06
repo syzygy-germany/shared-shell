@@ -1,26 +1,21 @@
 .PHONY: package
 
-.PHONY: config
-config: ## copy config
-	mkdir -p /etc/sascha-andres/shared-shell
-	cp sys-config/config.sh /etc/sascha-andres/shared-shell/config
+VERSION ?= 0.0.0
+CONFIG_PREFIX ?= 
 
 .PHONY: deb
 deb: ## create a debian package
-	-rm shared-shell.deb
-	nfpm pkg -f nfpm.yaml --target shared-shell.deb
+	-rm *.deb
+	nfpm pkg -f ${CONFIG_PREFIX}nfpm.yaml --target shared-shell_${VERSION}.deb
 
 .PHONY: rpm
 rpm: ## create a redhat package
-	echo rpm not in use
+	@echo rpm not in use
 
 package: deb rpm ## create packages
 
 test: ## run test.sh, copy config before
-	sudo make config
 	./test.sh
-
-
 
 # Absolutely awesome: http://marmelab.com/blog/2016/02/29/auto-documented-makefile.html
 help:
