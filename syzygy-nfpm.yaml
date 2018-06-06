@@ -1,0 +1,22 @@
+name: "syzygy-bash-functions"
+arch: "amd64"
+platform: "linux"
+version: "0.4.0"
+section: "default"
+priority: "extra"
+provides:
+- syzygy-bash-functions
+depends:
+- bash 
+maintainer: "DevOps"
+description: |
+  Some scriptsto include in shell screipts for reusable functions
+vendor: "SYZYGY Deutschkand GmbH"
+homepage: "https://github.com/syzygy-germany/shared-shell"
+license: "Apache 2"
+bindir: "/opt/syzygy/bash-functions"
+files:
+  ./logger.sh: "/usr/local/share/bash/logger.sh"
+  ./execute.sh: "/usr/local/share/bash/execute.sh"
+  ./exiting.sh: "/usr/local/share/bash/exiting.sh"
+  ./module.sh: "/usr/local/share/bash/module.sh"
