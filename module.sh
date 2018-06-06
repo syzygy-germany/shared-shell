@@ -1,10 +1,10 @@
 #! /usr/bin/env bash
 
-shared_config_loaded=${shared_config_loaded:-0}
-if [ "x0" == "x${shared_config_loaded}" ]; then
+shared_module_loaded=${shared_module_loaded:-0}
+if [ "x0" == "x${shared_module_loaded}" ]; then
   set -u
 
-  shared_config_loaded=1
+  shared_module_loaded=1
 
   shared_install_location=${shared_install_location:-"/opt/sascha-andres/shared-shell"}
   shared_debug=${shared_debug:-0}
