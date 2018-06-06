@@ -4,12 +4,14 @@
 
 |Version|Description|
 |---|---|
+|0.4.1|install location|
+| |name config.sh module.sh and move to install location|
 |0.4.0|no-exit-immediatly|
-||color support|
+| |color support|
 |0.3.0|Adopt packages|
 |0.2.0|Added loader with __import and __module_loaded|
-||add fine grained bash option handling|
-||prepend __ to function names|
+| |add fine grained bash option handling|
+| |prepend __ to function names|
 |0.1.0|Initial version|
 
 ## Configuration variables

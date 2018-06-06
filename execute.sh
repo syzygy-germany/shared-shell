@@ -9,13 +9,6 @@ if [ "x0" != "x${shared_execute_sh_loaded}" ]; then
     echo "--> execute.sh already included"
   fi
 else
-  shared_execute_sh_loaded=1
-  if [ ! -e /etc/sascha-andres/shared-shell/config ]; then
-    echo "!! config not found !!"
-    exit 1
-  fi
-  source /etc/sascha-andres/shared-shell/config
-
   shared_exec_err_ocurred=${shared_exec_err_ocurred:-0}
 
   pkg::import logger
