@@ -1,7 +1,7 @@
 name: "syzygy-bash-functions"
 arch: "amd64"
 platform: "linux"
-version: "0.4.0"
+version: "0.4.1"
 section: "default"
 priority: "extra"
 provides:
@@ -14,7 +14,7 @@ description: |
 vendor: "SYZYGY Deutschkand GmbH"
 homepage: "https://github.com/syzygy-germany/shared-shell"
 license: "Apache 2"
-bindir: "/opt/syzygy/bash-functions"
+bindir: "/usr/local/share/bash/"
 files:
   ./logger.sh: "/usr/local/share/bash/logger.sh"
   ./execute.sh: "/usr/local/share/bash/execute.sh"

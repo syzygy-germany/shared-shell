@@ -6,7 +6,7 @@ CONFIG_PREFIX ?=
 .PHONY: deb
 deb: ## create a debian package
 	-rm *.deb
-	nfpm pkg -f ${CONFIG_PREFIX}nfpm.yaml --target shared-shell_${VERSION}.deb
+	nfpm pkg -f ${CONFIG_PREFIX}nfpm.yaml --target ${CONFIG_PREFIX}bash-functions_${VERSION}.deb
 
 .PHONY: rpm
 rpm: ## create a redhat package
